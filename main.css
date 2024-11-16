@@ -160,13 +160,13 @@ header {
     line-height: 90px;
     width: 800px;
     margin: auto auto 30px;
-    font-weight: 300;
+    font-weight: 500;
     font-family: var(--title-ff);
     color: white;
 }
 
 .hero p {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 300;
     width: 600px;
     margin: auto;
@@ -179,9 +179,8 @@ header {
     margin-top: 60px;
     color: white;
     display: flex;
-    background: #cf231d;
+    background: black;
     justify-content: space-between;
-    outline: 2px solid #cf231d;
 }
 
 .hero .hero-button p {
@@ -207,8 +206,16 @@ header {
     opacity: 0.8;
 }
 
-.hero .hero-button:hover .phone-icon {
-    animation: shake 0.5s;
+.hero .hero-button:hover {
+    animation: fadecolor 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    background: #cf231d;
+}
+
+.hero .hero-button:hover p {
+    animation: leftright 1s;
+    animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
 }
 
@@ -1044,11 +1051,12 @@ footer {
     }
 
     .hero {
-        top: 20%;
+        top: 25%;
     }
 
     .hero h1 {
-        font-size: 35px;
+        font-size: 45px;
+        font-weight: 500;
         width: 380px;
         line-height: 45px;
     }
@@ -1062,9 +1070,7 @@ footer {
         height: 50px;
         margin: auto;
         margin-top: 40px;
-        color: white;
         display: flex;
-        background: #cf231d;
         justify-content: space-between;
     }
 
@@ -1130,38 +1136,26 @@ footer {
     }
 }
 
-@keyframes shake {
+@keyframes leftright {
     0% {
-        transform: translate(1px, 1px) rotate(0deg);
-    }
-    10% {
-        transform: translate(-1px, -2px) rotate(-1deg);
-    }
-    20% {
-        transform: translate(-3px, 0px) rotate(1deg);
-    }
-    30% {
-        transform: translate(3px, 2px) rotate(0deg);
-    }
-    40% {
-        transform: translate(1px, -1px) rotate(1deg);
+        transform: translateX(20%);
     }
     50% {
-        transform: translate(-1px, 2px) rotate(-1deg);
-    }
-    60% {
-        transform: translate(-3px, 1px) rotate(0deg);
-    }
-    70% {
-        transform: translate(3px, 1px) rotate(-1deg);
-    }
-    80% {
-        transform: translate(-1px, -1px) rotate(1deg);
-    }
-    90% {
-        transform: translate(1px, 2px) rotate(0deg);
+        transform: translateX(0%);
     }
     100% {
-        transform: translate(1px, -2px) rotate(-1deg);
+        transform: translateX(5%);
+    }
+}
+
+@keyframes fadecolor {
+    0% {
+        background: black;
+    }
+    50% {
+        background: #cf231d;
+    }
+    100% {
+        background: #cf231d;
     }
 }
