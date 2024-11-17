@@ -1,3 +1,36 @@
+const loadIconScript = () => {
+	const script = document.createElement('script');
+	script.src = 'https://unpkg.com/feather-icons';
+	script.onload = () => feather.replace();
+	document.body.appendChild(script);
+}
+
+const loadContent = (url, elementId) => {
+	return fetch(url)
+		.then(response => response.text())
+		.then(data => {
+			document.getElementById(elementId).innerHTML = data;
+		})
+		.catch(error => {
+			console.error("Error loading content:", error);
+		});
+}
+
+const sections = [
+	{url: 'sections/header.html', id: 'header'},
+	{url: 'sections/hero.html', id: 'hero'},
+	{url: 'sections/about.html', id: 'about'},
+	{url: 'sections/services.html', id: 'services'},
+	{url: 'sections/projects.html', id: 'projects'},
+	{url: 'sections/contact.html', id: 'contact'},
+	{url: 'sections/footer.html', id: 'footer'}
+];
+
+const populateHTML = () => {
+	return Promise.all(sections.map(section => loadContent(section.url, section.id)));
+};
+
+
 const state = {
 	isHidden: true,
 	hamburgerButton: null,
@@ -12,6 +45,7 @@ const state = {
 	hamburgerIcon: null,
 	closeIcon: null,
 	mobileNav: null,
+	form: null,
 };
 const updateState = () => {
 	state.hamburgerButton = document.getElementById("hamburger");
@@ -26,6 +60,7 @@ const updateState = () => {
 	state.hamburgerIcon = document.getElementById("hamburger-icon");
 	state.closeIcon = document.getElementById("close-icon");
 	state.mobileNav = document.getElementById("mobile-nav");
+	state.form = document.getElementById("form");
 };
 const smoothScrollToAnchor = () => {
 	const links = document.querySelectorAll('a[href^="#"]');
@@ -35,7 +70,7 @@ const smoothScrollToAnchor = () => {
 			const href = this.getAttribute('href');
 			const target = document.querySelector(href);
 			if (target) {
-				target.scrollIntoView({ behavior: "smooth", block: "start"});
+				target.scrollIntoView({behavior: "smooth", block: "start"});
 				link.active = true;
 				state.mobileNav.style.height = '0px';
 				state.mobileNav.style.marginTop = '-100px';
@@ -84,7 +119,9 @@ const handleProjectToggle = (buttonClicked) => {
 	state.projectItem2.style.display = 'flex';
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+	await populateHTML();
+	loadIconScript();
 	updateState();
 	smoothScrollToAnchor();
 	if (state.hamburgerButton) {
@@ -114,13 +151,13 @@ window.addEventListener("DOMContentLoaded", () => {
 			handleProjectToggle(2);
 		});
 	}
+	if (state.form) {
+		state.form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			alert('button clicked');
+		});
+	}
 });
-
-const intersectionOptions = {
-	root: null,
-	rootMargin: "0px",
-	threshold: 0.5,
-};
 
 const animateProjectsIn = () => {
 	state.firstImage2.classList.remove('fade-in');
@@ -136,7 +173,17 @@ const animateProjectsIn = () => {
 	}, 1000);
 }
 
-callback = (entries, observer) => {
+let isMobile = false;
+if (window.innerWidth <= 1000) {
+	isMobile = true;
+}
+const intersectionOptions = {
+	root: null,
+	rootMargin: "0px",
+	threshold: isMobile ? 0.2 : 0.5,
+};
+
+intersectionProjectsHandler = (entries, observer) => {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
 			animateProjectsIn();
@@ -145,11 +192,8 @@ callback = (entries, observer) => {
 	});
 };
 
-let observer = new IntersectionObserver(callback, intersectionOptions);
+let observer = new IntersectionObserver(intersectionProjectsHandler, intersectionOptions);
 const projects = document.getElementById("projects");
 observer.observe(projects);
 
 
-document.getElementById('form').addEventListener('submit', (e) => {
-	e.preventDefault();
-});
