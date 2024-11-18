@@ -10,6 +10,10 @@ const loadContent = (url, elementId) => {
 		.then(response => response.text())
 		.then(data => {
 			document.getElementById(elementId).innerHTML = data;
+			if (elementId === 'footer') {
+				const date = new Date().getFullYear();
+				document.getElementById('copyright').innerHTML += date;
+			}
 		})
 		.catch(error => {
 			console.error("Error loading content:", error);

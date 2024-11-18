@@ -627,7 +627,8 @@ footer {
 .footer-left img {
     display: block;
     height: 60px;
-    width: auto;
+    width: 60px;
+    object-fit: contain;
     border: 1px solid white;
     margin-top: 10px;
 }
@@ -964,7 +965,7 @@ footer {
     }
 
     .mobile-menu-button {
-        color: var(--primary-color);
+        color: var(--off-white);
         font-size: 50px;
         height: 80px;
         line-height: 80px;
@@ -973,7 +974,7 @@ footer {
         padding-right: 20px;
         margin-top: -10px;
         padding-left: 10px;
-        background: white;
+        background: var(--primary-color);
         cursor: pointer;
         width: 100%;
         z-index: 1000;
@@ -1037,8 +1038,9 @@ footer {
     }
 
     .mobile-nav img {
-        height: auto;
-        width: 60%;
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
         margin-top: -200px;
         margin-left: 20px;
     }
