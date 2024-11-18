@@ -108,7 +108,8 @@ header {
 
 .main-nav img {
     height: 60px;
-    width: 292px;
+    width: auto;
+    object-fit: cover;
 }
 
 .main-nav ul {
