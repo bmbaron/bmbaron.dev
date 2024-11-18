@@ -17,13 +17,13 @@ const loadContent = (url, elementId) => {
 }
 
 const sections = [
-	{url: 'sections/header.html', id: 'header'},
-	{url: 'sections/hero.html', id: 'hero'},
-	{url: 'sections/about.html', id: 'about'},
-	{url: 'sections/services.html', id: 'services'},
-	{url: 'sections/projects.html', id: 'projects'},
-	{url: 'sections/contact.html', id: 'contact'},
-	{url: 'sections/footer.html', id: 'footer'}
+	{url: 'sections/1-header.html', id: 'header'},
+	{url: 'sections/2-hero.html', id: 'hero'},
+	{url: 'sections/3-about.html', id: 'about'},
+	{url: 'sections/4-services.html', id: 'services'},
+	{url: 'sections/5-projects.html', id: 'projects'},
+	{url: 'sections/6-contact.html', id: 'contact'},
+	{url: 'sections/7-footer.html', id: 'footer'}
 ];
 
 const populateHTML = () => {
