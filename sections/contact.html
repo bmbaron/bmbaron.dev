@@ -1,0 +1,36 @@
+<h2>Contact</h2>
+<article class="contact-content">
+    <!--TODO: Add contact section image-->
+    <div class="contact-image">
+        <img src="../images/contact.webp" class="box-shadow" alt="" loading="lazy"/>
+    </div>
+    <div class="contact-form">
+        <h4>Get in Touch</h4>
+        <form id="form">
+            <fieldset>
+                <div>
+                    <label for="name">Name</label><br/>
+                    <input type="text" id="name" name="name"/><br/>
+                </div>
+                <div>
+                    <label for="email">Email</label><br/>
+                    <input type="email" id="email" name="email"/><br/>
+                </div>
+                <div>
+                    <label class="required" for="reason">Reason</label><br/>
+                    <select required type="select" id="reason" name="reason">
+                        <option value="" selected disabled hidden>(Please let me know how to tag your submission)</option>
+                        <option value="job">Work opportunity</option>
+                        <option value="feedback">Feedback on website or profile</option>
+                        <option value="other">Other / just saying "hi"</option>
+                    </select><br/>
+                </div>
+                <div>
+                    <label class="required" for="notes">Your Message</label><br/>
+                    <textarea required id="notes" name="notes"></textarea><br/>
+                </div>
+            </fieldset>
+            <button class="button submit-button" type="submit">SEND INTO THE DARK ETHER</button>
+        </form>
+    </div>
+</article>
