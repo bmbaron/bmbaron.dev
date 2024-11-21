@@ -8,10 +8,8 @@
     width: 1440px;
     justify-content: center;
     margin: auto;
-    padding-bottom: 100px;
     gap: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 50px;
 }
 
 .about-content {
@@ -38,11 +36,21 @@
 
 .about-text, .contact-form {
     width: 50%;
-    height: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: flex-start;
+}
+
+.about-text {
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+}
+
+.contact-form {
+    height: auto;
 }
 
 .contact-form {
@@ -63,7 +71,7 @@
 .about-text .button {
     margin-left: 0;
     margin-right: auto;
-    margin-bottom: 0;
+    margin-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
     width: fit-content;
@@ -91,8 +99,8 @@ form fieldset {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
-    padding-bottom: 40px;
+    height: fit-content;
+    gap: 30px;
 }
 
 fieldset div {
@@ -120,14 +128,17 @@ form input, form select {
 }
 
 form textarea {
-    height: 60px;
+    min-height: 40px;
+    height: auto;
     width: 100%;
+    transition: height 0.2s linear;
 }
 
 form .submit-button {
     width: 50%;
     margin-left: 0;
     margin-right: auto;
+    margin-bottom: 0;
 }
 
 
@@ -168,6 +179,11 @@ form .submit-button {
         padding-right: 20px;
     }
 
+    .about-content {
+        justify-content: space-between !important;
+        gap: 100px;
+    }
+
     .contact-image {
         width: 100%;
     }
@@ -180,18 +196,25 @@ form .submit-button {
 
     form {
         padding-right: unset !important;
+        height: fit-content;
     }
 
     form fieldset {
         margin-top: 0px;
-        margin-bottom: 30px;
         justify-content: center;
         align-items: center;
         gap: 30px;
+        margin-bottom: 0;
+        height: fit-content;
+        overflow: hidden;
     }
 
     form .submit-button {
         margin: auto;
+        margin-bottom: 0;
+        width: fit-content;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .about-content .about-text h3 {
@@ -202,8 +225,19 @@ form .submit-button {
         width: 100%;
     }
 
-    .about-image, .contact-image {
+    .about-image {
         width: 100%;
+        height: 400px;
+        margin: auto;
+    }
+
+    .about-image figcaption {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .about-image img {
+        display: inline-block;
         height: 400px;
     }
 
@@ -212,10 +246,6 @@ form .submit-button {
         margin-right: auto;
         margin-top: 20px;
     }
-}
-
-@media only screen and (max-width: 600px) {
-
 }
 
 

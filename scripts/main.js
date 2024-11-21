@@ -55,6 +55,7 @@ const state = {
 	mobileNav: null,
 	mobileLinks: [null],
 	form: null,
+	textarea: null,
 };
 const updateState = () => {
 	state.hamburgerButton = document.getElementById('hamburger');
@@ -73,6 +74,7 @@ const updateState = () => {
 	state.mobileNav = document.getElementById('mobile-nav');
 	state.mobileLinks = document.getElementsByClassName('mobile-link');
 	state.form = document.getElementById('form');
+	state.textarea = document.getElementById('notes');
 };
 const smoothScrollToAnchor = () => {
 	const links = document.querySelectorAll('a[href^="#"]');
@@ -185,6 +187,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 			state.project1Button.classList.add('button-inverse');
 			state.project2Button.classList.remove('button-inverse');
 			handleProjectToggle(2);
+		});
+	}
+	if (state.textarea) {
+		state.textarea.addEventListener('mouseenter', () => {
+			state.textarea.style.height = '100px';
+		});
+		state.textarea.addEventListener('mouseleave', () => {
+			if (state.textarea.value.length === 0) {
+				state.textarea.style.height = '40px';
+			}
 		});
 	}
 	if (state.form) {

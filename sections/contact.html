@@ -1,4 +1,3 @@
-<h2>Contact</h2>
 <article class="contact-content">
     <!--TODO: Add contact section image-->
     <div class="contact-image">
@@ -13,13 +12,13 @@
                     <input type="text" id="name" name="name"/><br/>
                 </div>
                 <div>
-                    <label for="email">Email</label><br/>
-                    <input type="email" id="email" name="email"/><br/>
+                    <label class="required" for="email">Email</label><br/>
+                    <input required type="email" id="email" name="email"/><br/>
                 </div>
                 <div>
                     <label class="required" for="reason">Reason</label><br/>
                     <select required type="select" id="reason" name="reason">
-                        <option value="" selected disabled hidden>(Please let me know how to tag your submission)</option>
+                        <option value="" selected disabled hidden>Please select the purpose of your inquiry</option>
                         <option value="job">Work opportunity</option>
                         <option value="feedback">Feedback on website or profile</option>
                         <option value="other">Other / just saying "hi"</option>
