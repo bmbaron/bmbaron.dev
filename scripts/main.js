@@ -144,11 +144,11 @@ const handleProjectToggle = (buttonClicked) => {
 
 const animateAboutImage = (aboutImage, aboutImageCaption) => {
 	if (aboutImage.src.includes('1')) {
-		aboutImage.src = '../images/about-2.webp';
+		aboutImage.src = '../assets/about-2.webp';
 		aboutImageCaption.innerHTML = `Ahhhh, that's nice. Click to give me a bug to fix`;
 	}
 	else {
-		aboutImage.src = '../images/about-1.webp';
+		aboutImage.src = '../assets/about-1.webp';
 		aboutImageCaption.innerHTML = 'Alright, what even is this? Click to give me another coffee';
 	}
 }
@@ -187,6 +187,24 @@ window.addEventListener('DOMContentLoaded', async () => {
 			state.project1Button.classList.add('button-inverse');
 			state.project2Button.classList.remove('button-inverse');
 			handleProjectToggle(2);
+		});
+	}
+	if (state.firstImage1 && state.firstImage2 && state.secondImage1 && state.secondImage2) {
+		const videos = document.querySelectorAll('video');
+		videos.forEach(video => {
+			video.playbackRate = 2;
+		});
+		state.firstImage1.addEventListener('mouseleave', () => {
+			document.getElementById('first-video-1').currentTime = 0;
+		});
+		state.secondImage1.addEventListener('mouseleave', () => {
+			document.getElementById('second-video-1').currentTime = 0;
+		});
+		state.secondImage1.addEventListener('mouseleave', () => {
+			document.getElementById('first-video-2').currentTime = 0;
+		});
+		state.secondImage2.addEventListener('mouseleave', () => {
+			document.getElementById('second-video-2').currentTime = 0;
 		});
 	}
 	if (state.textarea) {

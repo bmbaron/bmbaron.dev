@@ -115,7 +115,7 @@ form > * {
 
 form .required:after {
     content:" *";
-    color: red;
+    color: var(--red);
 }
 
 form label {
