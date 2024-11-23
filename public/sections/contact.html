@@ -28,9 +28,12 @@
                     <label class="required" for="notes">Your Message</label><br/>
                     <textarea required id="notes" name="notes"></textarea><br/>
                 </div>
-                <input type="hidden" id="recaptcha-token" name="g-recaptcha-response">
             </fieldset>
-            <button class="button submit-button" type="submit">SEND INTO THE DARK ETHER</button>
+            <button class="g-recaptcha button submit-button"
+                    data-sitekey="6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
+                    data-callback='onSubmit'
+                    data-action='submit'>SEND INTO THE DARK ETHER
+            </button>
         </form>
     </div>
 </article>
