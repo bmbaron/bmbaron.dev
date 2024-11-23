@@ -30,6 +30,18 @@
             <section class="contact box-shadow" id="contact"></section>
         </main>
         <footer role="contentinfo" id="footer"></footer>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"></script>
         <script type="text/javascript" src="scripts/main.js"></script>
+        <script>
+			grecaptcha.ready(function() {
+				document.querySelector("form").addEventListener("submit", function(event) {
+					event.preventDefault();
+					grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'submit'}).then(function(token) {
+						document.getElementById('recaptcha-token').value = token;
+						event.target.submit();
+					});
+				});
+			});
+        </script>
     </body>
 </html>
