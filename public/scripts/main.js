@@ -54,7 +54,6 @@ const state = {
 	closeIcon: null,
 	mobileNav: null,
 	mobileLinks: [null],
-	form: null,
 	textarea: null,
 };
 const updateState = () => {
@@ -73,7 +72,6 @@ const updateState = () => {
 	state.closeIcon = document.getElementById('close-icon');
 	state.mobileNav = document.getElementById('mobile-nav');
 	state.mobileLinks = document.getElementsByClassName('mobile-link');
-	state.form = document.getElementById('form');
 	state.textarea = document.getElementById('notes');
 };
 const smoothScrollToAnchor = () => {
@@ -215,12 +213,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 			if (state.textarea.value.length === 0) {
 				state.textarea.style.height = '40px';
 			}
-		});
-	}
-	if (state.form) {
-		state.form.addEventListener('submit', (e) => {
-			e.preventDefault();
-			alert('button clicked');
 		});
 	}
 });

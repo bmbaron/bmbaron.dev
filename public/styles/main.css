@@ -1,9 +1,9 @@
-@import './header.css';
-@import './hero.css';
-@import './about-contact.css';
-@import './services.css';
-@import './projects.css';
-@import './footer.css';
+@import 'header.css';
+@import 'hero.css';
+@import 'about-contact.css';
+@import 'services.css';
+@import 'projects.css';
+@import 'footer.css';
 
 /* ===== VARIABLES ===== */
 
