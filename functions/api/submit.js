@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
 	try {
 		const recaptchaSecretKey = context.env.RECAPTCHA_SECRET_KEY;
 		const formData = await context.request.formData();
-		const formObject = Object.fromEntries(formData.entries())
+		const formObject = Object.fromEntries(formData.entries());
 		const token = formObject['g-recaptcha-response'];
 
 		if (!token) {

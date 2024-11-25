@@ -258,7 +258,7 @@ observer.observe(projects);
 
 const getRecaptchaToken = () => {
 	grecaptcha.ready(function () {
-		grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'submit-form'}).then(function (token) {
+		grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'submit'}).then(function (token) {
 			document.getElementById('g-recaptcha-response').value = token;
 		});
 	})
