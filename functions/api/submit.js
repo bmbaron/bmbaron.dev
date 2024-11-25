@@ -31,7 +31,7 @@ export async function onRequestPost(context) {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			method: 'POST',
+			method: "POST",
 			body: JSON.stringify({
 				event: {
 					token : `${token}`,
@@ -41,7 +41,7 @@ export async function onRequestPost(context) {
 		});
 
 		console.log(firstTimeVerifUrl)
-		console.log(firstTimeVerifResponse)
+		console.log(JSON.stringify(firstTimeVerifResponse));
 
 		if (!firstTimeVerifResponse.success) {
 			return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA validation failed' }), { status: 403 });
