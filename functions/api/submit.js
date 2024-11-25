@@ -4,7 +4,6 @@
 export async function onRequestPost(context) {
 	try {
 		const recaptchaSecretKey = context.env.RECAPTCHA_SECRET_KEY;
-		const googleCloudAPIKey = context.env.GOOGLE_CLOUD_API_KEY;
 		const formData = await context.request.formData();
 		const formObject = Object.fromEntries(formData.entries())
 
@@ -14,38 +13,37 @@ export async function onRequestPost(context) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
 		}
 
-		// const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
-		//
-		// const verificationParams = new URLSearchParams();
-		// verificationParams.append('secret', recaptchaSecretKey);
-		// verificationParams.append('response', token);
-		//
-		// const verificationResponse = await fetch(verificationUrl, {
-		// 	method: 'POST',
-		// 	body: verificationParams
-		// });
-		// const verificationResult = await verificationResponse.json();
+		const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
 
-		const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
+		const verificationParams = new URLSearchParams();
+		verificationParams.append('secret', recaptchaSecretKey);
+		verificationParams.append('response', `${token}`);
 
-		const firstTimeVerifResponse = await fetch(firstTimeVerifUrl, {
-			headers: {
-				"Content-Type": "application/json",
-			},
-			method: "POST",
-			body: JSON.stringify({
-				event: {
-					token: `${token}`,
-					siteKey: "6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
-				}
-			})
+		const verificationResponse = await fetch(verificationUrl, {
+			method: 'POST',
+			body: verificationParams
 		});
 
-		console.log(firstTimeVerifUrl)
+		// const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
+		//
+		// const firstTimeVerifResponse = await fetch(firstTimeVerifUrl, {
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	method: "POST",
+		// 	body: JSON.stringify({
+		// 		event: {
+		// 			token: `${token}`,
+		// 			siteKey: "6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
+		// 		}
+		// 	})
+		// });
+		//
+		// console.log(firstTimeVerifUrl)
 
-		if (!firstTimeVerifResponse.success) {
-			console.error(`Error: ${firstTimeVerifResponse.status} - ${firstTimeVerifResponse.statusText}`);
-			const errorText = await firstTimeVerifResponse.text();
+		if (verificationResponse.status !== 200) {
+			console.error(`Error: ${verificationResponse.status} - ${verificationResponse.statusText}`);
+			const errorText = await verificationResponse.text();
 			console.error('Error Body:', errorText);
 		}
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
