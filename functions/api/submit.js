@@ -19,7 +19,22 @@ export async function onRequestPost(context) {
 			method: 'POST',
 		});
 
-		console.log(verificationUrl);
+		const verificationResult = await verificationResponse.json();
+
+		console.log(verificationResult);
+
+
+
+		console.log(JSON.stringify(verificationResponse));
+
+		if (!verificationResult.success) {
+			console.error(JSON.stringify(verificationResult));
+			return new Response(JSON.stringify({ success: false, message: 'Form recaptcha could not be validated' }), { status: 403 });
+
+		}
+
+		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
+
 
 		// const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
 		//
@@ -38,12 +53,6 @@ export async function onRequestPost(context) {
 		//
 		// console.log(firstTimeVerifUrl)
 
-		if (!verificationResponse.success) {
-			console.error(JSON.stringify(verificationResponse));
-			return new Response(JSON.stringify({ success: false, message: 'Form recaptcha could not be validated' }), { status: 403 });
-
-		}
-		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
 
 		// return new Response(JSON.stringify(formObject), {
 		// 	headers: {
