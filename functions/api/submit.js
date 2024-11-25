@@ -8,6 +8,7 @@ export async function onRequestPost(context) {
 		const formObject = Object.fromEntries(formData.entries())
 
 		const token = formObject['g-recaptcha-response'];
+		console.log(token);
 		if (!token) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
 		}
@@ -17,13 +18,15 @@ export async function onRequestPost(context) {
 		verificationParams.append('secret', recaptchaSecretKey);
 		verificationParams.append('response', token);
 
+		console.log(verificationParams);
+
 		const verificationResponse = await fetch(verificationUrl, {
 			method: 'POST',
 			body: verificationParams
 		});
 		const verificationResult = await verificationResponse.json();
 
-		if (!verificationResult.success || verificationResult.score < 0.5) {
+		if (!verificationResult.success) {
 			return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA validation failed' }), { status: 403 });
 		}
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
