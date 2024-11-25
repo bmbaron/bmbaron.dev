@@ -46,6 +46,7 @@ export async function onRequestPost(context) {
 			const errorText = await verificationResponse.text();
 			console.error('Error Body:', errorText);
 		}
+		console.log(JSON.stringify(verificationResponse));
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
 
 		// return new Response(JSON.stringify(formObject), {
