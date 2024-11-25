@@ -8,25 +8,36 @@ export async function onRequestPost(context) {
 		const formObject = Object.fromEntries(formData.entries())
 
 		const token = formObject['g-recaptcha-response'];
-		console.log(token);
+
 		if (!token) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
 		}
 
-		const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
-		const verificationParams = new URLSearchParams();
-		verificationParams.append('secret', recaptchaSecretKey);
-		verificationParams.append('response', token);
+		// const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
+		//
+		// const verificationParams = new URLSearchParams();
+		// verificationParams.append('secret', recaptchaSecretKey);
+		// verificationParams.append('response', token);
+		//
+		// const verificationResponse = await fetch(verificationUrl, {
+		// 	method: 'POST',
+		// 	body: verificationParams
+		// });
+		// const verificationResult = await verificationResponse.json();
 
-		console.log(verificationParams);
+		const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${recaptchaSecretKey}`
 
-		const verificationResponse = await fetch(verificationUrl, {
+		const firstTimeVerifResponse = await fetch(firstTimeVerifUrl, {
 			method: 'POST',
-			body: verificationParams
+			body: {
+				"event": {
+					"token" : token,
+					"siteKey": "6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
+				}
+			}
 		});
-		const verificationResult = await verificationResponse.json();
 
-		if (!verificationResult.success) {
+		if (!firstTimeVerifResponse.success) {
 			return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA validation failed' }), { status: 403 });
 		}
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
