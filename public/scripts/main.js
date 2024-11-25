@@ -55,6 +55,7 @@ const state = {
 	mobileNav: null,
 	mobileLinks: [null],
 	textarea: null,
+	form: null,
 };
 const updateState = () => {
 	state.hamburgerButton = document.getElementById('hamburger');
@@ -73,6 +74,8 @@ const updateState = () => {
 	state.mobileNav = document.getElementById('mobile-nav');
 	state.mobileLinks = document.getElementsByClassName('mobile-link');
 	state.textarea = document.getElementById('notes');
+	state.form = document.getElementById('myForm');
+
 };
 const smoothScrollToAnchor = () => {
 	const links = document.querySelectorAll('a[href^="#"]');
@@ -215,6 +218,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 			}
 		});
 	}
+	if (state.form) {
+		state.form.addEventListener('submit', handleFormSubmission);
+	}
 });
 
 const animateProjectsIn = () => {
@@ -256,10 +262,18 @@ observer.observe(projects);
 
 
 
-const getRecaptchaToken = () => {
+const handleFormSubmission = (event) => {
+	event.preventDefault();
 	grecaptcha.ready(function () {
 		grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'submit'}).then(function (token) {
-			document.getElementById('g-recaptcha-response').value = token;
+			const formData = new FormData(state.form);
+			formData.append('g-recaptcha-response', `${token}`);
+			fetch('/api/submit', {
+				method: 'POST',
+				body: formData,
+			}).then(response => response.json())
+				.then(data => console.log(data))
+				.catch(error => console.error('Error:', error));
 		});
 	})
 }
