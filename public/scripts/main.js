@@ -74,7 +74,7 @@ const updateState = () => {
 	state.mobileNav = document.getElementById('mobile-nav');
 	state.mobileLinks = document.getElementsByClassName('mobile-link');
 	state.textarea = document.getElementById('notes');
-	state.form = document.getElementById('myForm');
+	state.form = document.getElementById('form');
 
 };
 const smoothScrollToAnchor = () => {
