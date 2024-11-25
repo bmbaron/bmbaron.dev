@@ -4,6 +4,7 @@
 export async function onRequestPost(context) {
 	try {
 		const recaptchaSecretKey = context.env.RECAPTCHA_SECRET_KEY;
+		const googleCloudAPIKey = context.env.GOOGLE_CLOUD_API_KEY;
 		const formData = await context.request.formData();
 		const formObject = Object.fromEntries(formData.entries())
 
@@ -25,7 +26,7 @@ export async function onRequestPost(context) {
 		// });
 		// const verificationResult = await verificationResponse.json();
 
-		const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${recaptchaSecretKey}`
+		const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
 
 		const firstTimeVerifResponse = await fetch(firstTimeVerifUrl, {
 			headers: {
@@ -42,15 +43,11 @@ export async function onRequestPost(context) {
 
 		console.log(firstTimeVerifUrl)
 
-		if (!firstTimeVerifResponse.ok) {
+		if (!firstTimeVerifResponse.success) {
 			console.error(`Error: ${firstTimeVerifResponse.status} - ${firstTimeVerifResponse.statusText}`);
 			const errorText = await firstTimeVerifResponse.text();
 			console.error('Error Body:', errorText);
-		} else {
-			const result = await firstTimeVerifResponse.json();
-			console.log('Success:', result);
 		}
-
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
 
 		// return new Response(JSON.stringify(formObject), {
