@@ -13,15 +13,13 @@ export async function onRequestPost(context) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
 		}
 
-		const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
-
-		const verificationParams = new URLSearchParams();
-		verificationParams.append('secret', recaptchaSecretKey);
-		verificationParams.append('response', `${token}`);
+		const verificationUrl = `https://www.google.com/recaptcha/api.js?secret=${recaptchaSecretKey}&response=${token}`;
 
 		const verificationResponse = await fetch(verificationUrl, {
 			method: 'POST',
-			body: verificationParams
+			headers: {
+				"Content-Type": "application/json",
+			},
 		});
 
 		// const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
@@ -41,12 +39,11 @@ export async function onRequestPost(context) {
 		//
 		// console.log(firstTimeVerifUrl)
 
-		if (verificationResponse.status !== 200) {
-			console.error(`Error: ${verificationResponse.status} - ${verificationResponse.statusText}`);
-			const errorText = await verificationResponse.text();
-			console.error('Error Body:', errorText);
+		if (!verificationResponse.success) {
+			console.error(JSON.stringify(verificationResponse));
+			return new Response(JSON.stringify({ success: false, message: 'Form recaptcha could not be validated' }), { status: 403 });
+
 		}
-		console.log(JSON.stringify(verificationResponse));
 		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
 
 		// return new Response(JSON.stringify(formObject), {
