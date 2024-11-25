@@ -13,14 +13,13 @@ export async function onRequestPost(context) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
 		}
 
-		const verificationUrl = `https://www.google.com/recaptcha/api.js?secret=${recaptchaSecretKey}&response=${token}`;
+		const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${token}`;
 
 		const verificationResponse = await fetch(verificationUrl, {
 			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-			},
 		});
+
+		console.log(verificationUrl);
 
 		// const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${googleCloudAPIKey}`
 		//
