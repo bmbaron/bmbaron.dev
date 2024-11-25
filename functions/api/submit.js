@@ -28,14 +28,20 @@ export async function onRequestPost(context) {
 		const firstTimeVerifUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/bmbaron-dev-1731665083848/assessments?key=${recaptchaSecretKey}`
 
 		const firstTimeVerifResponse = await fetch(firstTimeVerifUrl, {
+			headers: {
+				"Content-Type": "application/json",
+			},
 			method: 'POST',
-			body: {
-				"event": {
-					"token" : token,
-					"siteKey": "6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
+			body: JSON.stringify({
+				event: {
+					token : `${token}`,
+					siteKey: "6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
 				}
-			}
+			})
 		});
+
+		console.log(firstTimeVerifUrl)
+		console.log(firstTimeVerifResponse)
 
 		if (!firstTimeVerifResponse.success) {
 			return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA validation failed' }), { status: 403 });
