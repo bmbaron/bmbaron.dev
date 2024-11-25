@@ -5,7 +5,8 @@
     </div>
     <div class="contact-form">
         <h4>Get in Touch</h4>
-        <form id="form" method="POST" action="/api/submit">
+<!--        action="/api/submit"-->
+        <form id="form" action="/api/submit" autocomplete="on">
             <fieldset>
                 <div>
                     <label for="name">Name</label><br/>
@@ -26,13 +27,12 @@
                 </div>
                 <div>
                     <label class="required" for="notes">Your Message</label><br/>
-                    <textarea required id="notes" name="notes"></textarea><br/>
+                    <textarea required id="notes" name="notes" onkeyup="getRecaptchaToken()"></textarea><br/>
                 </div>
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
             </fieldset>
-            <button class="g-recaptcha button submit-button"
-                    data-sitekey="6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx"
-                    data-callback='onSubmit'
-                    data-action='submit'>SEND INTO THE DARK ETHER
+            <button class="button submit-button" type="submit">
+                > SEND INTO THE DARK ETHER
             </button>
         </form>
     </div>

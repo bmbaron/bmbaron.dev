@@ -255,3 +255,14 @@ const projects = document.getElementById('projects');
 observer.observe(projects);
 
 
+
+const getRecaptchaToken = () => {
+	grecaptcha.ready(function () {
+		grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'homepage'}).then(function (token) {
+			document.getElementById('g-recaptcha-response').value = token;
+		});
+	})
+}
+
+
+
