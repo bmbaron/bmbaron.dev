@@ -7,6 +7,8 @@ export async function onRequestPost(context) {
 		const formData = await context.request.formData();
 		const formObject = Object.fromEntries(formData.entries());
 		const token = formObject['g-recaptcha-response'];
+		const submittedData = { ...formObject };
+		delete submittedData['g-recaptcha-response'];
 
 		if (!token) {
 			return new Response(JSON.stringify({ success: false, error: 'No reCAPTCHA token provided' }), { status: 400 });
@@ -25,8 +27,18 @@ export async function onRequestPost(context) {
 			return new Response(JSON.stringify({ success: false, message: 'Form recaptcha could not be validated' }), { status: 403 });
 
 		}
-		return new Response(JSON.stringify({ success: true, message: 'Form recaptcha validated successfully' }), { status: 200 });
+		if (verificationResult.score < 0.5) {
+			return new Response(JSON.stringify({ success: false, message: 'Validation failed. Aborted' }), { status: 403 });
+		}
 
+		return new Response(
+			JSON.stringify({
+				success: true,
+				message: 'Form recaptcha validated successfully.',
+				submittedData: submittedData
+			}),
+			{ status: 200 }
+		);
 	} catch (error) {
 		return new Response(JSON.stringify({ success: false, error: error.message }), { status: 500 });
 	}
