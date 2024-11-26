@@ -81,7 +81,7 @@ export async function onRequestPost(context) {
 				JSON.stringify({
 					success: true,
 					message: 'Form recaptcha validated successfully.',
-					submittedData: submittedData
+					submittedData: formObject
 				}),
 				{status: 200}
 			);
