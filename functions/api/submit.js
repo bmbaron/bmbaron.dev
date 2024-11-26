@@ -49,12 +49,12 @@ export async function onRequestPost(context) {
 				"headers": {
 					"X-Message-Source": "bmbaron.dev"
 				},
-				"template_uuid": `${mailtrapTemplateID}`,
+				"template_uuid": mailtrapTemplateID,
 				"template_variables": {
-					"name": `${formObject.name}`,
-					"email": `${formObject.email}`,
-					"reason": `${formObject.reason}`,
-					"message": `${formObject.notes}`
+					name: formObject.name,
+					email: formObject.email,
+					reason: formObject.reason,
+					message: formObject.notes
 				}
 			};
 
@@ -64,9 +64,9 @@ export async function onRequestPost(context) {
 				headers: {
 					'Content-Type': 'application/json',
 					Accept: 'application/json',
-					'Api-Token': `${mailtrapAPIToken}`
+					'Api-Token': mailtrapAPIToken
 				},
-				body: `${mailConfig}`
+				body: JSON.stringify(mailConfig)
 			};
 
 			try {
