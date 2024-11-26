@@ -7,8 +7,6 @@ export async function onRequestPost(context) {
 		const formData = await context.request.formData();
 		const formObject = Object.fromEntries(formData.entries());
 		const token = formObject['g-recaptcha-response'];
-		const submittedData = {...formObject};
-		delete submittedData['g-recaptcha-response'];
 
 		if (!token) {
 			return new Response(JSON.stringify({success: false, error: 'No reCAPTCHA token provided'}), {status: 400});
@@ -53,10 +51,10 @@ export async function onRequestPost(context) {
 				},
 				"template_uuid": `${mailtrapTemplateID}`,
 				"template_variables": {
-					"name": `${submittedData.name}`,
-					"email": `${submittedData.email}`,
-					"reason": `${submittedData.reason}`,
-					"message": `${submittedData.message}`
+					"name": `${formObject.name}`,
+					"email": `${formObject.email}`,
+					"reason": `${formObject.reason}`,
+					"message": `${formObject.notes}`
 				}
 			};
 
