@@ -66,7 +66,7 @@ export async function onRequestPost(context) {
 					Accept: 'application/json',
 					'Api-Token': `${mailtrapAPIToken}`
 				},
-				body: mailConfig
+				body: `${mailConfig}`
 			};
 
 			try {
