@@ -280,6 +280,7 @@ const handleFormSubmission = (event) => {
 					state.submitButton.innerHTML = 'Sent. Thank you!'
 					state.submitButton.style.background = 'var(--green)';
 					state.submitButton.style.borderColor = 'var(--green)';
+					state.submitButton.style.pointerEvents = 'none';
 				}).catch(error => console.error('Error:', error));
 		});
 	})
