@@ -104,7 +104,7 @@ const showMobileMenu = () => {
 	if (state.mobileNav && state.mobileLinks) {
 		const linksArray = Array.from(state.mobileLinks);
 		if (state.isHidden) {
-			state.mobileNav.style.height = 'calc(100vh - 60px)';
+			state.mobileNav.style.height = '100vh';
 			state.mobileNav.style.marginTop = '0px';
 			state.mobileNav.style.opacity = '1';
 			linksArray.forEach((link) => {
