@@ -1,9 +1,4 @@
-/* TODO: Add final banner background image, commented out rule below has with filter */
 header {
-    /*background: linear-gradient(*/
-    /*        rgba(0, 0, 0, 0.6),*/
-    /*        rgba(0, 0, 0, 0.6)*/
-    /*), url("../assets/banner.webp") no-repeat 40% 0;*/
     background: url("../assets/banner.svg") no-repeat;
     background-size: cover;
     height: 100vh;
@@ -58,7 +53,7 @@ header {
 }
 
 .main-nav a {
-    color: var(--primary-color);
+    color: black;
     font-size: 15px;
     text-decoration: none;
     font-weight: unset;
@@ -100,16 +95,16 @@ header {
     }
 
     .mobile-menu-button {
-        color: var(--primary-color);
+        color: white;
         font-size: 50px;
         height: 60px;
         width: 60px;
-        line-height: 55px;
+        line-height: 52px;
         display: block;
         padding-left: 10px;
         padding-right: 15px;
         margin-top: 0px;
-        background: white;
+        background: var(--blue);
         cursor: pointer;
         z-index: 1000;
         position: fixed;
@@ -162,7 +157,7 @@ header {
     }
 
     .mobile-nav a {
-        color: var(--off-white);
+        color: black !important;
         font-size: 20px;
         text-decoration: none;
         transition: color 0.5s ease-in;

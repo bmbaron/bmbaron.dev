@@ -1,7 +1,7 @@
 footer {
     height: 200px;
     background: var(--primary-color);
-    color: white;
+    color: black;
     overflow: hidden;
     padding-left: 40px;
     padding-right: 40px;
@@ -70,11 +70,11 @@ footer {
 }
 
 .footer-left a, .footer-right a {
-    color: white;
+    color: black;
 }
 
 .footer-left a:hover, .footer-right a:hover {
-    color: var(--red);
+    color: white;
 }
 
 @media only screen and (max-width: 1000px) {

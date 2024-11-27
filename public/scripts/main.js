@@ -56,6 +56,7 @@ const state = {
 	mobileLinks: [null],
 	textarea: null,
 	form: null,
+	submitButton: null,
 };
 const updateState = () => {
 	state.hamburgerButton = document.getElementById('hamburger');
@@ -75,6 +76,7 @@ const updateState = () => {
 	state.mobileLinks = document.getElementsByClassName('mobile-link');
 	state.textarea = document.getElementById('notes');
 	state.form = document.getElementById('form');
+	state.submitButton = document.getElementById('submit-button');
 
 };
 const smoothScrollToAnchor = () => {
@@ -266,14 +268,19 @@ const handleFormSubmission = (event) => {
 	event.preventDefault();
 	grecaptcha.ready(function () {
 		grecaptcha.execute('6Ldo9H8qAAAAAOL_iJ8zY8jcJufd3O_sS-LY2AFx', {action: 'submit'}).then(function (token) {
+			state.submitButton.innerHTML = 'Sending...'
 			const formData = new FormData(state.form);
 			formData.append('g-recaptcha-response', `${token}`);
 			fetch('/api/submit', {
 				method: 'POST',
 				body: formData,
 			}).then(response => response.json())
-				.then(data => console.log(data))
-				.catch(error => console.error('Error:', error));
+				.then(data => {
+					console.log(data);
+					state.submitButton.innerHTML = 'Sent. Thank you!'
+					state.submitButton.style.background = 'var(--green)';
+					state.submitButton.style.borderColor = 'var(--green)';
+				}).catch(error => console.error('Error:', error));
 		});
 	})
 }

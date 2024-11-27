@@ -1,9 +1,11 @@
 .services {
     color: black;
+    margin-top: 40px;
 }
 
 .services h2 {
     color: black;
+    font-size: 40px;
 }
 
 .services-wrapper {
@@ -17,16 +19,16 @@
 }
 
 .services .services-card {
-    height: 570px !important;
+    height: fit-content;
+    min-height: 600px;
     width: 30%;
-    overflow: hidden;
     background: white;
     color: black;
 }
 
 .services-card img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
 }
 
@@ -36,12 +38,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
+    height: fit-content;
     gap: 10px;
 }
 
 .services-content .summary {
-    font-size: 12px;
+    font-size: 14px;
     font-style: italic;
     text-align: center;
     max-width: 300px;
@@ -49,7 +51,7 @@
 
 .services-content p:nth-of-type(2) {
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 16px;
     max-width: 300px;
     text-align: left;
     white-space: break-spaces;
@@ -60,27 +62,9 @@
 }
 
 .services-content .quoted-content p {
-    width: 350px;
+    width: 100%;
 }
 
-.services-content .quote-start, .quote-end {
-    color: var(--red);
-    font-size: 30px;
-    line-height: 10px;
-    width: fit-content;
-}
-
-.services-content .quote-start {
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 10px;
-}
-
-.services-content .quote-end {
-    margin-left: auto;
-    margin-right: 0;
-    margin-top: 10px;
-}
 
 @media only screen and (min-width: 1000px) and (max-width: 1440px) {
 
@@ -89,16 +73,12 @@
         width: 100%;
     }
 
-    .services .services-card {
-        height: 500px;
-    }
-
-    .services-card .services-content {
-        height: 300px;
-    }
-
     .services-card .services-content a {
         margin-top: auto;
+    }
+
+    .services-card img {
+        height: 180px;
     }
 }
 
@@ -128,7 +108,6 @@
 
     .services-content p {
         margin-top: 20px;
-        font-size: 14px;
     }
 
 

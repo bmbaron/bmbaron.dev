@@ -146,8 +146,8 @@
         margin-top: 60px;
         color: white;
         display: flex;
-        background: var(--red);
         justify-content: space-between;
+        background: var(--red);
     }
 }
 
@@ -187,7 +187,6 @@
         margin-top: 40px;
         color: white;
         display: flex;
-        background: var(--red);
         justify-content: space-between;
     }
 

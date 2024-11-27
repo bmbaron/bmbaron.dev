@@ -30,11 +30,11 @@
 
 .projects .button-inverse {
     background: white;
-    color: var(--primary-color);
+    color: var(--blue);
 }
 
 .projects .button:not(.button-inverse):hover  {
-    background: var(--primary-color) !important;
+    background: var(--blue) !important;
     color: white !important;
 }
 
