@@ -223,6 +223,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 	if (state.form) {
 		state.form.addEventListener('submit', handleFormSubmission);
 	}
+	AOS.init({
+		offset: 200,
+		duration: 600,
+		easing: 'ease-in-sine',
+		delay: 100,
+	});
 });
 
 const animateProjectsIn = () => {
