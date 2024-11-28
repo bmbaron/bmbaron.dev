@@ -1,3 +1,8 @@
+let isMobile = false;
+if (window.innerWidth <= 1000) {
+	isMobile = true;
+}
+
 const loadIconScript = () => {
 	const script = document.createElement('script');
 	script.src = 'https://unpkg.com/feather-icons';
@@ -40,8 +45,6 @@ const populateHTML = () => {
 const state = {
 	isHidden: true,
 	hamburgerButton: null,
-	aboutImage: null,
-	aboutImageCaption: null,
 	project1Button: null,
 	project2Button: null,
 	projectItem1: null,
@@ -60,8 +63,6 @@ const state = {
 };
 const updateState = () => {
 	state.hamburgerButton = document.getElementById('hamburger');
-	state.aboutImage = document.getElementById('about-image');
-	state.aboutImageCaption = document.getElementById('about-image-caption');
 	state.project1Button = document.getElementById('project-1');
 	state.project2Button = document.getElementById('project-2');
 	state.projectItem1 = document.getElementById('project-item-1');
@@ -145,16 +146,6 @@ const handleProjectToggle = (buttonClicked) => {
 	state.projectItem2.style.display = 'flex';
 }
 
-const animateAboutImage = (aboutImage, aboutImageCaption) => {
-	if (aboutImage.src.includes('1')) {
-		aboutImage.src = '../assets/about-2.webp';
-		aboutImageCaption.innerHTML = `Ahhhh, that's nice. Click to give me a bug to fix`;
-	}
-	else {
-		aboutImage.src = '../assets/about-1.webp';
-		aboutImageCaption.innerHTML = 'Alright, what even is this? Click to give me another coffee';
-	}
-}
 window.addEventListener('DOMContentLoaded', async () => {
 	await populateHTML();
 	loadIconScript();
@@ -175,11 +166,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 			state.isHidden = !state.isHidden;
 		});
 	}
-	if (state.aboutImage && state.aboutImageCaption) {
-		state.aboutImage.addEventListener('click', () => {
-			animateAboutImage(state.aboutImage, state.aboutImageCaption);
-		});
-	}
 	if (state.project1Button && state.project2Button) {
 		state.project1Button.addEventListener('click', () => {
 			state.project2Button.classList.add('button-inverse');
@@ -191,6 +177,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 			state.project2Button.classList.remove('button-inverse');
 			handleProjectToggle(2);
 		});
+		if (isMobile) {
+			state.project1Button.click();
+		}
 	}
 	if (state.firstImage1 && state.firstImage2 && state.secondImage1 && state.secondImage2) {
 		const videos = document.querySelectorAll('video');
@@ -223,12 +212,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 	if (state.form) {
 		state.form.addEventListener('submit', handleFormSubmission);
 	}
-	AOS.init({
-		offset: 200,
-		duration: 600,
-		easing: 'ease-in-sine',
-		delay: 100,
-	});
+	if (isMobile) {
+		AOS.init({
+			offset: 0,
+			duration: 0,
+			delay: 0,
+		});
+	}
+	else {
+		AOS.init({
+			offset: 200,
+			duration: 600,
+			easing: 'ease-in-sine',
+			delay: 100,
+		});
+	}
 });
 
 const animateProjectsIn = () => {
@@ -245,14 +243,10 @@ const animateProjectsIn = () => {
 	}, 1000);
 }
 
-let isMobile = false;
-if (window.innerWidth <= 1000) {
-	isMobile = true;
-}
 const intersectionOptions = {
 	root: null,
 	rootMargin: '0px',
-	threshold: isMobile ? 0.2 : 0.5,
+	threshold: 0.5,
 };
 
 intersectionProjectsHandler = (entries, observer) => {
@@ -266,7 +260,10 @@ intersectionProjectsHandler = (entries, observer) => {
 
 let observer = new IntersectionObserver(intersectionProjectsHandler, intersectionOptions);
 const projects = document.getElementById('projects');
-observer.observe(projects);
+if (!isMobile) {
+	console.log('not mobile')
+	observer.observe(projects);
+}
 
 
 
