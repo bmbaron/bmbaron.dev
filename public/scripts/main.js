@@ -182,21 +182,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 		}
 	}
 	if (state.firstImage1 && state.firstImage2 && state.secondImage1 && state.secondImage2) {
-		const videos = document.querySelectorAll('video');
-		videos.forEach(video => {
-			video.playbackRate = 2;
-		});
-		state.firstImage1.addEventListener('mouseleave', () => {
-			document.getElementById('first-video-1').currentTime = 0;
-		});
-		state.secondImage1.addEventListener('mouseleave', () => {
-			document.getElementById('second-video-1').currentTime = 0;
-		});
-		state.secondImage1.addEventListener('mouseleave', () => {
-			document.getElementById('first-video-2').currentTime = 0;
-		});
-		state.secondImage2.addEventListener('mouseleave', () => {
-			document.getElementById('second-video-2').currentTime = 0;
+		const overlays = document.querySelectorAll('.overlay');
+		console.log(overlays)
+		overlays.forEach(overlay => {
+			overlay.addEventListener('click', () => {
+				const video = overlay.nextElementSibling;
+				video.autoplay = true;
+				video.load();
+				if (video.requestFullscreen) {
+					video.requestFullscreen();
+				} else if (video.webkitRequestFullscreen) { /* Safari */
+					video.webkitRequestFullscreen();
+				} else if (video.msRequestFullscreen) { /* IE11 */
+					video.msRequestFullscreen();
+				}
+			});
 		});
 	}
 	if (state.textarea) {
@@ -225,6 +225,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 			duration: 600,
 			easing: 'ease-in-sine',
 			delay: 100,
+			mirror: false,
 		});
 	}
 });
@@ -261,7 +262,6 @@ intersectionProjectsHandler = (entries, observer) => {
 let observer = new IntersectionObserver(intersectionProjectsHandler, intersectionOptions);
 const projects = document.getElementById('projects');
 if (!isMobile) {
-	console.log('not mobile')
 	observer.observe(projects);
 }
 
