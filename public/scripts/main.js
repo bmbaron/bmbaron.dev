@@ -18,8 +18,7 @@ const loadContent = (url, elementId) => {
 			if (elementId === 'footer') {
 				const date = new Date().getFullYear() + '&nbsp;';
 				document.getElementById('copyright').innerHTML += date;
-				document.getElementById('copyright').innerHTML += 
-					'<a target="_blank" href="https://github.com/bmbaron" title="open my GitHub profile">@bmbaron</a>';
+				document.getElementById('copyright').innerHTML += '<span style="font-weight: 700;">bmbaron</span>';
 			}
 		})
 		.catch(error => {
@@ -111,14 +110,14 @@ const showMobileMenu = () => {
 			state.mobileNav.style.marginTop = '0px';
 			state.mobileNav.style.opacity = '1';
 			linksArray.forEach((link) => {
-				link.style.color = 'var(--primary-color)';
+				link.style.color = 'var(--primary)';
 			})
 		} else {
 			state.mobileNav.style.height = '0px';
 			state.mobileNav.style.marginTop = '-100px';
 			state.mobileNav.style.opacity = '0';
 			linksArray.forEach((link) => {
-				link.style.color = 'var(--off-white)';
+				link.style.color = 'var(--light)';
 			})
 		}
 	}

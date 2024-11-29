@@ -5,15 +5,18 @@
 @import 'projects.css';
 @import 'footer.css';
 
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
 /* ===== VARIABLES ===== */
 
 :root {
-    --primary-color: #2496bf;
-    --off-white: #f2f2f2;
+    --primary: #237E9F;
+    --secondary: #f1962e;
+    --light: #f2f2f2;
     --title-ff: 'Raleway';
     --text-ff: 'Inter';
-    --red: #cf231d;
-    --blue: #2496bf;
     --green: #058755;
 }
 
@@ -30,7 +33,7 @@ body, h1, h2, h3, p, a {
 body {
     font-family: var(--text-ff);
     scroll-behavior: smooth;
-    background: var(--off-white);
+    background: var(--light);
 }
 
 section {
@@ -57,8 +60,8 @@ a:hover {
 .button {
     width: 160px;
     height: auto;
-    background: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    background: var(--primary);
+    border: 2px solid var(--primary);
     color: white;
     margin: auto;
     padding-top: 10px;
@@ -67,7 +70,7 @@ a:hover {
 
 .button:hover {
     background: white;
-    color: var(--primary-color);
+    color: var(--primary);
     cursor: pointer;
     text-decoration: none !important;
 }

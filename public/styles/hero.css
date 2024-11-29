@@ -73,7 +73,7 @@
 }
 
 .hero-content .hero-button .phone-icon {
-    color: var(--red);
+    color: var(--secondary);
     font-size: 20px;
 }
 
@@ -81,7 +81,7 @@
     animation: fadeToRed 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
-    background: var(--red);
+    background: var(--secondary);
 }
 
 .hero-content .hero-button:hover p {
@@ -147,7 +147,7 @@
         color: white;
         display: flex;
         justify-content: space-between;
-        background: var(--red);
+        background: var(--secondary);
     }
 }
 
@@ -206,7 +206,7 @@
     }
 
     .hero-content .hero-button .phone-icon {
-        color: var(--red);
+        color: var(--secondary);
         font-size: 20px;
     }
 }
@@ -244,16 +244,16 @@
         background: black;
     }
     50% {
-        background: var(--red);
+        background: var(--secondary);
     }
     100% {
-        background: var(--red);
+        background: var(--secondary);
     }
 }
 
 @keyframes fadeToBlack {
     0% {
-        color: var(--red);
+        color: var(--secondary);
     }
     50% {
         color: black;
