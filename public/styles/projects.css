@@ -286,7 +286,7 @@
         flex-direction: column !important;
         height: fit-content;
         width: 100%;
-        border: 1px solid red;
+        height: 600px !important;
     }
 
     .project-item-text .left-text {
@@ -307,8 +307,7 @@
     .project-item-text .right-text {
         width: 100%;
         padding-left: 50px;
-        margin-bottom: -80px;
-        border: 1px solid red;
+        margin-bottom: 200px;
     }
 
     .project-item .project-item-text .right-text ul {
@@ -347,12 +346,15 @@
     }
 
     .project-item-text {
-        height: 600px !important;
         width: 100%;
     }
 
     .project-item-text div {
         margin: auto;
+    }
+
+    .project-item-text .right-text {
+        margin-bottom: -80px;
     }
 
     .project-item .project-item-text .right-text ul {
