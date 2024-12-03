@@ -14,6 +14,7 @@
 
 .hero-text {
     backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     width: 682px;
     border-radius: 0 150px;
     border: 5px solid white;
