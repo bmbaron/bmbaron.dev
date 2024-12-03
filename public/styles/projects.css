@@ -366,8 +366,8 @@
         padding: 10px;
     }
 
-    .first-image:hover video, .second-image:hover video {
-        z-index: -1;
+    .project-item .images-container video {
+        z-index: 999 !important;
     }
 
 }

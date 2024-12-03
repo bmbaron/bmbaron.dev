@@ -181,25 +181,22 @@ window.addEventListener('DOMContentLoaded', async () => {
 		}
 	}
 	if (state.firstImage1 && state.firstImage2 && state.secondImage1 && state.secondImage2) {
-		const overlays = document.getElementsByClassName('overlay');
-		if (overlays) {
-			Array.prototype.forEach.call(
-			overlays,overlay => {
-				overlay.addEventListener('click', () => {
-					const video = overlay.nextElementSibling;
-					if (video.requestFullscreen) {
-						video.requestFullscreen();
-						video.play();
-					} else if (video.webkitRequestFullscreen) { /* Safari */
-						video.webkitRequestFullscreen();
-						video.play();
-					} else if (video.msRequestFullscreen) { /* IE11 */
-						video.msRequestFullscreen();
-						video.play();
-					}
-				});
+		const overlays = document.querySelectorAll('.overlay');
+		overlays.forEach(overlay => {
+			const video = overlay.nextElementSibling;
+			overlay.addEventListener('click', () => {
+				if (!video) return;
+				video.load();
+				video.play();
+				if (video.requestFullscreen) {
+					video.requestFullscreen();
+				} else if (video.webkitRequestFullscreen) { /* Safari */
+					video.webkitRequestFullscreen();
+				} else if (video.msRequestFullscreen) { /* IE11 */
+					video.msRequestFullscreen();
+				}
 			});
-		}
+		});
 	}
 	if (state.textarea) {
 		state.textarea.addEventListener('mouseenter', () => {
