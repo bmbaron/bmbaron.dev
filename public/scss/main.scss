@@ -1,9 +1,9 @@
-@import 'header.css';
-@import 'hero.css';
-@import 'about-contact.css';
-@import 'services.css';
-@import 'projects.css';
-@import 'footer.css';
+@use '_header';
+@use '_hero';
+@use '_about-contact';
+@use '_services';
+@use '_projects';
+@use '_footer';
 
 .grecaptcha-badge {
     visibility: hidden !important;

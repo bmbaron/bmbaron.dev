@@ -222,7 +222,7 @@ form .recaptcha-text {
     }
 
     form fieldset {
-        margin-top: 0px;
+        margin-top: 0;
         justify-content: center;
         align-items: center;
         gap: 30px;
@@ -232,8 +232,7 @@ form .recaptcha-text {
     }
 
     form .submit-button {
-        margin: auto;
-        margin-bottom: 0;
+        margin: auto auto 0;
         max-width: 300px !important;
     }
 

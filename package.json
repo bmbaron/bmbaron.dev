@@ -1,0 +1,24 @@
+{
+  "name": "bmbaron.dev",
+  "version": "1.0.0",
+  "description": "- built with only HTML, CSS, and JavaScript - a lightweight and high-performing template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "sass public/scss/main.scss public/css/main.css --no-source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmbaron/bmbaron.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmbaron/bmbaron.dev/issues"
+  },
+  "homepage": "https://github.com/bmbaron/bmbaron.dev#readme",
+  "devDependencies": {
+    "sass": "^1.83.1"
+  }
+}
