@@ -1,0 +1,40 @@
+<article class="contact-content">
+    <div class="contact-image" data-aos="zoom-out-right">
+        <img src="../assets/contact.webp" class="box-shadow" alt="" loading="lazy"/>
+    </div>
+    <div class="contact-form">
+        <h4>Get in Touch</h4>
+        <form id="form" autocomplete="on">
+            <fieldset>
+                <div>
+                    <label for="name">Name</label><br/>
+                    <input type="text" id="name" name="name"/><br/>
+                </div>
+                <div>
+                    <label class="required" for="email">Email</label><br/>
+                    <input required type="email" id="email" name="email"/><br/>
+                </div>
+                <div>
+                    <label class="required" for="reason">Reason</label><br/>
+                    <select required type="select" id="reason" name="reason">
+                        <option value="" selected disabled hidden>Why are you reaching out?</option>
+                        <option value="job">Work opportunity</option>
+                        <option value="feedback">Feedback on website or profile</option>
+                        <option value="other">Other / just saying "hi"</option>
+                    </select><br/>
+                </div>
+                <div>
+                    <label class="required" for="notes">Your Message</label><br/>
+                    <textarea required id="notes" name="notes"></textarea><br/>
+                </div>
+            </fieldset>
+            <button class="button submit-button" id="submit-button" type="submit">
+                > SEND INTO THE DARK ETHER
+            </button>
+            <p class="recaptcha-text">This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </p>
+        </form>
+    </div>
+</article>
