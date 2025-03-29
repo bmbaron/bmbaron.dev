@@ -281,8 +281,8 @@ const handleFormSubmission = (event) => {
 					console.log(data);
 					if (!data.success) {
 						state.submitButton.innerHTML = 'Error. Please try again.'
-						state.submitButton.style.background = 'red';
-						state.submitButton.style.borderColor = 'red';
+						state.submitButton.style.background = '#f1962e';
+						state.submitButton.style.borderColor = '#f1962e';
 						state.form.reset();
 						return;
 					}
